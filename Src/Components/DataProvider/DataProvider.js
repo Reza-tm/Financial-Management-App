@@ -9,7 +9,7 @@ const introPaginationDispatcher = createContext();
 
 const DataProvider = ({children}) => {
   const [accounts, setAccounts] = useState([]);
-  const [intro, setIntro] = useState(0);
+  const [intro, setIntro] = useState(1);
 
   return (
     <data.Provider value={accounts}>
