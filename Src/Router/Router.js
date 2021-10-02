@@ -11,8 +11,8 @@ import {
 } from '../Components/DataProvider/DataProvider';
 import FirstStep from '../Screens/SignUp/FirstStep';
 import SecondStep from '../Screens/SignUp/SecondStep';
-import ThirdStep from '../Screens/SignUp/ThirdStep';
 import Splash from '../Screens/Splash/Splash';
+import UserPass from '../Screens/UserPassGetter/UserPass';
 
 const Stack = createNativeStackNavigator();
 
@@ -61,7 +61,7 @@ const Router = () => {
     } else if (page == 1) {
       return (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="First">
+          <Stack.Navigator>
             <Stack.Screen
               name="First"
               component={FirstStep}
@@ -72,14 +72,11 @@ const Router = () => {
               component={SecondStep}
               options={{headerShown: false}}
             />
-            <Stack.Screen
-              name="Third"
-              component={ThirdStep}
-              options={{headerShown: false}}
-            />
           </Stack.Navigator>
         </NavigationContainer>
       );
+    } else if (page == 2) {
+      return <UserPass />;
     }
   }
 };
