@@ -61,7 +61,7 @@ const Router = () => {
     } else if (page == 1) {
       return (
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Second">
+          <Stack.Navigator initialRouteName="First">
             <Stack.Screen
               name="First"
               component={FirstStep}

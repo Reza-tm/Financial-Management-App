@@ -1,10 +1,18 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
-import DatePicker from 'react-native-date-picker';
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  Platform,
+  TouchableOpacity,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import CDatePicker from '../../Components/DatePicker/DatePicker';
 
-const SecondStep = () => {
-  const [date, setDate] = useState(new Date());
-  console.log(date);
+const SecondStep = ({navigation, route}) => {
+  const [date, setDate] = useState('');
+
   return (
     <View style={styles.container}>
       <Image
@@ -12,14 +20,24 @@ const SecondStep = () => {
           resizeMode: 'cover',
           width: '100%',
           height: 250,
-          backgroundColor: 'red',
           marginVertical: 30,
         }}
         source={require('./../../Images/Office_workers_organizing_data_storage.jpg')}
       />
-      <DatePicker date={date} onDateChange={setDate} mode="date" locale="IR" />
-
-      <Text>Second</Text>
+      <CDatePicker dateGiver={setDate} />
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Third', {...route.params, date})}
+        style={{
+          marginTop: 170,
+          flexDirection: 'row',
+          alignItems: 'center',
+          alignSelf: 'flex-end',
+        }}>
+        <Text style={{fontFamily: 'IRANSansWeb_Medium', marginRight: 5}}>
+          بعدی
+        </Text>
+        <Icon name="chevron-forward-outline" size={22} color="#7B97F6" />
+      </TouchableOpacity>
     </View>
   );
 };

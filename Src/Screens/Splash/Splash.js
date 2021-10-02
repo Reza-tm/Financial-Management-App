@@ -9,6 +9,7 @@ const Splash = () => {
         source={require('./Animations/63568-mobile-banking.json')}
         autoPlay
         loop
+        duration={1000}
       />
     </View>
   );

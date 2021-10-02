@@ -12,13 +12,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import CustomeTextInput from '../../Components/CustomeTextInput/CustomeTextInput';
 
-const firstStep = () => {
+const firstStep = ({navigation}) => {
   const [codeMelli, setCodeMelli] = useState('');
   const [name, setName] = useState('');
   const [birthCertificate, setBirthCertificate] = useState('');
   const keyboardVerticalOffset = Platform.OS === 'ios' ? 60 : 30;
 
-  console.log(name);
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView
@@ -55,6 +54,10 @@ const firstStep = () => {
         />
       </KeyboardAvoidingView>
       <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('Second', {name, codeMelli, birthCertificate})
+        }
+        // onPress={() => console.log({name, codeMelli, birthCertificate})}
         style={{
           marginTop: 40,
           flexDirection: 'row',
