@@ -57,7 +57,6 @@ const firstStep = ({navigation}) => {
         onPress={() =>
           navigation.navigate('Second', {name, codeMelli, birthCertificate})
         }
-        // onPress={() => console.log({name, codeMelli, birthCertificate})}
         style={{
           marginTop: 40,
           flexDirection: 'row',

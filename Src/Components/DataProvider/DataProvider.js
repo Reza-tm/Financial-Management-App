@@ -1,25 +1,48 @@
-import React, {createContext, useContext, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 
 const data = createContext();
-const dataDispatcher = createContext();
 
 const introPagination = createContext();
-const introPaginationDispatcher = createContext();
+
+const movaghatAccount = createContext();
 
 const DataProvider = ({children}) => {
-  const [accounts, setAccounts] = useState([]);
-  const [intro, setIntro] = useState(1);
+  const [accounts, setAccounts] = useState([
+    {
+      name: 'محمد',
+      codeMelli: '۱۲۳',
+      birthCertificate: '۱۲۳',
+      date: '1399/01/05',
+      pass: 'omouqlz81o',
+    },
+  ]);
+  const [intro, setIntro] = useState(0);
+  const [movaghat, setMovaghat] = useState(['hello']);
+  useEffect(() => {
+    getStoredUsers();
+  }, []);
 
+  const getStoredUsers = async () => {
+    try {
+      const stringValue = await AsyncStorage.getItem('signUpuser');
+      const jsonValue = JSON.parse(stringValue);
+      if (jsonValue) {
+        setAccounts(jsonValue);
+        console.log('dataProvider', jsonValue);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
-    <data.Provider value={accounts}>
-      <dataDispatcher.Provider value={setAccounts}>
-        <introPagination.Provider value={intro}>
-          <introPaginationDispatcher.Provider value={setIntro}>
-            {children}
-          </introPaginationDispatcher.Provider>
-        </introPagination.Provider>
-      </dataDispatcher.Provider>
+    <data.Provider value={[accounts, setAccounts]}>
+      <introPagination.Provider value={[intro, setIntro]}>
+        <movaghatAccount.Provider value={[movaghat, setMovaghat]}>
+          {children}
+        </movaghatAccount.Provider>
+      </introPagination.Provider>
     </data.Provider>
   );
 };
@@ -29,7 +52,5 @@ const styles = StyleSheet.create({});
 export default DataProvider;
 
 export const useIntroPagination = () => useContext(introPagination);
-export const useIntroPaginationActions = () =>
-  useContext(introPaginationDispatcher);
 export const Accounts = () => useContext(data);
-export const AccountsActions = () => useContext(dataDispatcher);
+export const useMovaghat = () => useContext(movaghatAccount);

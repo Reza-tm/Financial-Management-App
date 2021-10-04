@@ -5,27 +5,25 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignUpScreen from '../Screens/Intro/SignUpScreen';
 import Old from '../Screens/Intro/Old';
 import Financial from '../Screens/Intro/Financial_Management';
-import {
-  useIntroPagination,
-  useIntroPaginationActions,
-} from '../Components/DataProvider/DataProvider';
+import {useIntroPagination} from '../Components/DataProvider/DataProvider';
 import FirstStep from '../Screens/SignUp/FirstStep';
 import SecondStep from '../Screens/SignUp/SecondStep';
 import Splash from '../Screens/Splash/Splash';
 import UserPass from '../Screens/UserPassGetter/UserPass';
+import Signin from '../Screens/SIgnIn/SignIn';
 
 const Stack = createNativeStackNavigator();
 
 const Router = () => {
-  const setPage = useIntroPaginationActions();
-  const page = useIntroPagination();
-  const [splash, setSplash] = useState(false); // make it true
+  const [page, setPage] = useIntroPagination();
+  const [splash, setSplash] = useState(false);
   // useEffect(() => {
   //   setTimeout(() => {
   //     setSplash(false);
   //   }, 3000);
   //   setPage(0);
   // }, []);
+
   // useEffect(() => {
   //   setSplash(true);
   //   setTimeout(() => {
@@ -77,6 +75,8 @@ const Router = () => {
       );
     } else if (page == 2) {
       return <UserPass />;
+    } else if (page == 10) {
+      return <Signin />;
     }
   }
 };

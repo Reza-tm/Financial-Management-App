@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useIntroPaginationActions} from '../../Components/DataProvider/DataProvider';
+import {useIntroPagination} from '../../Components/DataProvider/DataProvider';
 
 const Financial = () => {
-  const setPage = useIntroPaginationActions();
+  const [page, setPage] = useIntroPagination();
   return (
     <View style={styles.container}>
       <Image
@@ -46,14 +46,14 @@ const Financial = () => {
           افتتاح حساب
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.signInBtn}>
+      <TouchableOpacity style={styles.signInBtn} onPress={() => setPage(10)}>
         <Text
           style={{
             fontFamily: 'IRANSansWeb_Bold',
             fontSize: 13,
             color: '#374151',
           }}>
-          ورود به حساب{' '}
+          ورود به حساب
         </Text>
       </TouchableOpacity>
       <View style={styles.versionView}>

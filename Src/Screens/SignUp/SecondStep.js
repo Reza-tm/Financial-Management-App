@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -11,18 +11,19 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {
   Accounts,
   AccountsActions,
+  useIntroPagination,
   useIntroPaginationActions,
+  useMovaghat,
 } from '../../Components/DataProvider/DataProvider';
 import CDatePicker from '../../Components/DatePicker/DatePicker';
 
 const SecondStep = ({navigation, route}) => {
-  const setPagination = useIntroPaginationActions();
+  const [pagination, setPagination] = useIntroPagination();
   const [date, setDate] = useState('');
-  const accounts = Accounts();
-  const setAccounts = AccountsActions();
+  const [accounts, setAccounts] = Accounts();
+  const [movaghat, setMovaghat] = useMovaghat();
   const dataTransferer = userInfo => {
-    const newUserInfo = [...accounts, userInfo];
-    setAccounts(newUserInfo);
+    setMovaghat(userInfo);
     setPagination(2);
   };
 
@@ -39,7 +40,6 @@ const SecondStep = ({navigation, route}) => {
       />
       <CDatePicker dateGiver={setDate} />
       <TouchableOpacity
-        // onPress={() => navigation.navigate('Third', {...route.params, date})}
         onPress={() => dataTransferer({...route.params, date})}
         style={{
           marginTop: 170,
