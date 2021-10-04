@@ -1,13 +1,24 @@
 import React from 'react';
 import {View, StyleSheet, TextInput, Text} from 'react-native';
 
-const CustomeTextInput = ({name, value, setValue, placeholder, style}) => {
+const CustomeTextInput = ({
+  name,
+  value,
+  setValue,
+  placeholder,
+  style,
+  type,
+  endEdit,
+}) => {
   return (
     <View style={style}>
       <Text style={{fontFamily: 'IRANSansWeb', fontSize: 12}}>{name}</Text>
       <TextInput
+        keyboardType={type}
         value={value}
+        autoCorrect={false}
         onChangeText={setValue}
+        onEndEditing={endEdit}
         placeholder={placeholder}
         style={{
           width: '80%',

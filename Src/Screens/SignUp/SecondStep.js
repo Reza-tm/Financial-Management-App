@@ -38,20 +38,43 @@ const SecondStep = ({navigation, route}) => {
         }}
         source={require('./../../Images/Office_workers_organizing_data_storage.jpg')}
       />
-      <CDatePicker dateGiver={setDate} />
-      <TouchableOpacity
-        onPress={() => dataTransferer({...route.params, date})}
+      <Text
         style={{
-          marginTop: 170,
-          flexDirection: 'row',
-          alignItems: 'center',
-          alignSelf: 'flex-end',
+          fontFamily: 'IRANSansWeb_Medium',
+          alignSelf: 'center',
+          marginBottom: 20,
         }}>
-        <Text style={{fontFamily: 'IRANSansWeb_Medium', marginRight: 5}}>
-          بعدی
-        </Text>
-        <Icon name="chevron-forward-outline" size={22} color="#7B97F6" />
-      </TouchableOpacity>
+        تاریخ تولد خود را وارد کنید
+      </Text>
+      <CDatePicker dateGiver={setDate} />
+      <View
+        style={{flexDirection: 'row-reverse', justifyContent: 'space-between'}}>
+        <TouchableOpacity
+          onPress={() => dataTransferer({...route.params, date})}
+          style={{
+            marginTop: 70,
+            flexDirection: 'row',
+            alignItems: 'center',
+            alignSelf: 'flex-end',
+          }}>
+          <Text style={{fontFamily: 'IRANSansWeb_Medium', marginRight: 5}}>
+            بعدی
+          </Text>
+          <Icon name="chevron-forward-outline" size={22} color="#7B97F6" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setPagination(10)}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            alignSelf: 'flex-end',
+          }}>
+          <Icon name="chevron-back-outline" size={22} color="#7B97F6" />
+          <Text style={{fontFamily: 'IRANSansWeb_Medium', marginLeft: 5}}>
+            ورود به حساب
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

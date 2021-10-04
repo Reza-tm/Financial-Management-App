@@ -8,7 +8,7 @@ const CDatePicker = props => {
       <DatePicker
         style={{
           width: '95%',
-          height: 300,
+          height: 350,
           alignSelf: 'center',
           backgroundColor: '#E5EBFD',
           borderRadius: 5,
